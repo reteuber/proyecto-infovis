@@ -1,17 +1,67 @@
+/*------------------------------------------  HEADER   -------------------------------------------*/
+.header {
+    width: 100vw;
+    height: 350px;
+    background-image: url('assets/header5.png');
+    background-size: auto 100px;
+    background-size: cover;
+    background-position: center -300px;
+    border-radius: 0 0 250px 250px;
+    margin: 0 auto;
+    position: relative;
+    right: 14%;
+}
+
+/*------------------------------------------  BODY   -------------------------------------------*/
 body {
     margin: 0 auto;
-    /* Puedes cambiar el color de fondo (background-color) si lo deseas */
-    background-color: lightblue;
+    background-color: rgb(225, 217, 238);
     max-width: 80%;
     min-width: 500px;
     text-align: center;
 }
 
+/*------------------------------------------  TEXTOS   -------------------------------------------*/
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 30;
+    font-size: 50px;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 20;
+    font-size: 28px;
+    color: rgb(77, 52, 121);
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 2000;
+    font-size: 20px;
+}
+
+h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 2000;
+    font-size: 12px;
+    color: rgb(179, 171, 171);
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+}
+
+/*------------------------------------------  DIVS   -------------------------------------------*/
+.response {
+    background-color: white;
+    border: 1px solid white !important;
+    border-radius: 10px;
+}
+
 .case h2 {
-    /* Puedes cambiar el color de fondo (background-color) si lo deseas */
-    background-color: #e0a45e;
-    padding: 10px;
-    margin: 10px;
+    padding: 15px;
+    margin: 15px;
 }
 
 .response {
@@ -37,15 +87,33 @@ body {
     margin: 10px;
 }
 
-img{
+img {
     width: 100%;
     height: auto;
 }
 
-.hint{
+.hint {
     opacity: 0.7;
     color: rgb(200, 42, 42);
     border: 1px solid;
     padding: 5px;
     font-weight: bolder;
+}
+
+/*------------------------------------------  BOTONES   ------------------------------------------*/
+.boton {
+    padding: 10px 20px;
+    background-color: rgb(136, 27, 187);
+    border: 1px solid rgb(136, 27, 187) !important;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+}
+
+.boton:hover {
+    background-color: rgb(44, 6, 62);
+    border: 1px solid rgb(44, 6, 62) !important;
+    color: white;
 }
