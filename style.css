@@ -9,16 +9,17 @@
     border-radius: 0 0 250px 250px;
     margin: 0 auto;
     position: relative;
-    right: 14%;
+    right: 7%;
 }
 
 /*------------------------------------------  BODY   -------------------------------------------*/
 body {
     margin: 0 auto;
     background-color: rgb(225, 217, 238);
-    max-width: 80%;
+    max-width: 90%;
     min-width: 500px;
     text-align: center;
+    margin-bottom: 80px;
 }
 
 /*------------------------------------------  TEXTOS   -------------------------------------------*/
@@ -52,7 +53,14 @@ p {
     font-family: 'Lato', sans-serif;
 }
 
-/*------------------------------------------  DIVS   -------------------------------------------*/
+.texto-titulo {
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(77, 52, 121) !important;
+
+}
+
+/*----------------------------------  DIVS INDEX INFORME  ----------------------------------------*/
 .response {
     background-color: white;
     border: 1px solid white !important;
@@ -116,4 +124,28 @@ img {
     background-color: rgb(44, 6, 62);
     border: 1px solid rgb(44, 6, 62) !important;
     color: white;
+}
+
+/*-----------------------------------  SVG CONTAINERS  ------------------------------------------*/
+
+#vis-1 svg,
+#vis-2 svg,
+#vis-3 svg {
+    border: solid 4px white;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    margin: 1%;
+    float: left;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/*------------------------------------------  FOOTER ------------------------------------------*/
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    clear: both;
 }
