@@ -63,10 +63,12 @@ function BrechaGenero() {
     d3.json(DATOS1).then(data => {
         console.log(data);
 
+        const datosReducidos = data.slice(0, 100);
+
         //Escala de posición de los círculos 
         const escalaPosicion = d3.scaleLinear()
-            .domain([0, data.length])
-            .range([0, 2 * Math.PI]);
+            .domain([0, datosReducidos.length])
+            .range([0, (3 / 1.7) * Math.PI]);
 
         // Escala de color según continente
         const coloresPersonalizados = {
@@ -76,6 +78,13 @@ function BrechaGenero() {
             "Africa": "#ff7f00",
             "Asia": "#6a3d9a"
         };
+
+        const longitudMaxima = 250;
+
+        // Escala de largo de las barras 
+        const escalaLongitud = d3.scaleLinear()
+            .domain([0, 100])
+            .range([0, longitudMaxima]);
 
         const esquemaColores = d3.scaleOrdinal()
             .domain(Object.keys(coloresPersonalizados))
@@ -111,22 +120,42 @@ function BrechaGenero() {
         const svg2 = SVG2.append("g")
             .attr("transform", `translate(${WIDTH_VIS_2 / 2},${HEIGHT_VIS_2 / 2})`);
 
-        const radioGrande = 416;
+        const radioGrande = 400;
 
-        // Agregar números dentro de los círculos
+        // Barras de porcentaje de stem 
+        const barras = svg2.selectAll("barra")
+            .data(datosReducidos)
+            .enter()
+            .append("line")
+            .attr("x1", (d, i) => radioGrande * Math.cos(escalaPosicion(i) - Math.PI / 2))
+            .attr("y1", (d, i) => radioGrande * Math.sin(escalaPosicion(i) - Math.PI / 2))
+            .attr("x2", (d, i) => {
+                const longitudBarra = escalaLongitud(d.p_stem);
+                return radioGrande * Math.cos(escalaPosicion(i) - Math.PI / 2) - longitudBarra * Math.cos(escalaPosicion(i) - Math.PI / 2);
+            })
+            .attr("y2", (d, i) => {
+                const longitudBarra = escalaLongitud(d.p_stem);
+                return radioGrande * Math.sin(escalaPosicion(i) - Math.PI / 2) - longitudBarra * Math.sin(escalaPosicion(i) - Math.PI / 2);
+            })
+            .attr("class", "barra")
+            .style("stroke-width", 4)
+            .style("stroke-linecap", "round")
+            .style("stroke", d => esquemaColores(d.continente));
+
+        // Agregar círculos
         const circulos = svg2.selectAll("circle")
-            .data(data)
+            .data(datosReducidos)
             .enter()
             .append("circle")
             .attr("cx", (d, i) => radioGrande * Math.cos(escalaPosicion(i) - Math.PI / 2))
             .attr("cy", (d, i) => radioGrande * Math.sin(escalaPosicion(i) - Math.PI / 2))
-            .attr("r", 8)
+            .attr("r", 10)
             .attr("class", "circulo")
             .style("fill", d => esquemaColores(d.continente));
 
         // Agregar números dentro de los círculos
         const textos = svg2.selectAll("text")
-            .data(data)
+            .data(datosReducidos)
             .enter()
             .append("text")
             .attr("x", (d, i) => radioGrande * Math.cos(escalaPosicion(i) - Math.PI / 2))
@@ -135,7 +164,7 @@ function BrechaGenero() {
             .attr("alignment-baseline", "middle")
             .attr("font-family", "Montserrat")
             .attr("font-weight", "bold")
-            .attr("font-size", "8.3px")
+            .attr("font-size", "9px")
             .attr("class", "texto")
             .text(d => d.ranking)
             .style("fill", "white");
@@ -146,9 +175,9 @@ function BrechaGenero() {
         const puntuacionTexto = SVG1.append("text").attr("x", 140).attr("y", 300).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
 
         // Ajustado opacidades de los círculos y textos. 
-        d3.selectAll(".circulo, .texto")
+        d3.selectAll(".circulo, .texto, .barra")
             .on("mouseover", function (event, d) {
-                d3.selectAll(".circulo, .texto").style("opacity", function (otherData) {
+                d3.selectAll(".circulo, .texto, .barra").style("opacity", function (otherData) {
                     if (otherData === d) {
                         paisTexto.text(d.pais);
                         rankingTexto.text(d.ranking);
@@ -160,7 +189,7 @@ function BrechaGenero() {
                 });
             })
             .on("mouseout", function () {
-                d3.selectAll(".circulo, .texto").style("opacity", 1);
+                d3.selectAll(".circulo, .texto , .barra").style("opacity", 1);
                 paisTexto.text("");
                 rankingTexto.text("");
                 puntuacionTexto.text("");
