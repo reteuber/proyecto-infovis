@@ -5,7 +5,6 @@ const SVG3 = d3.select("#vis-3").append("svg");
 const DATOS1 = "https://raw.githubusercontent.com/reteuber/Bases-datos-proyecto/main/brecha_mundial_y_stem.json"
 
 // ----------------------------------  VISUALIZACIÓN 1  --------------------------------------------
-
 // Descripción   -----------------------------------------------------------------------------------
 const WIDTH_VIS_1 = 300;
 const HEIGHT_VIS_1 = 850;
@@ -41,7 +40,6 @@ SVG1.append("text")
     .attr("font-size", "15px")
     .attr("font-weight", "bold")
     .text("Puntuación:");
-
 
 // Conclusiones  -----------------------------------------------------------------------------------
 const WIDTH_VIS_3 = 1280;
@@ -152,7 +150,6 @@ function BrechaGenero() {
             .on("mouseover", function (event, d) {
                 d3.selectAll(".circulo, .texto").style("opacity", function (otherData) {
                     if (otherData === d) {
-                        // Actualiza los textos con los datos del círculo actual
                         paisTexto.text(d.pais);
                         rankingTexto.text(d.ranking);
                         puntuacionTexto.text(d.puntuacion);
@@ -160,12 +157,10 @@ function BrechaGenero() {
                     } else {
                         return 0.2;
                     }
-
                 });
             })
             .on("mouseout", function () {
                 d3.selectAll(".circulo, .texto").style("opacity", 1);
-                // Restaura los textos en SVG1 cuando el mouse sale de los círculos
                 paisTexto.text("");
                 rankingTexto.text("");
                 puntuacionTexto.text("");
