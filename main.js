@@ -41,6 +41,14 @@ SVG1.append("text")
     .attr("font-weight", "bold")
     .text("Puntuación:");
 
+ SVG1.append("text")
+    .attr("x", 30)
+    .attr("y", 330)
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "15px")
+    .attr("font-weight", "bold")
+    .text("% de mujeres en STEM:");
+
 // Conclusiones  -----------------------------------------------------------------------------------
 const WIDTH_VIS_3 = 1280;
 const HEIGHT_VIS_3 = 100;
@@ -72,11 +80,11 @@ function BrechaGenero() {
 
         // Escala de color según continente
         const coloresPersonalizados = {
-            "Europa": "#1f78b4",
-            "Oceania": "#33a02c",
-            "America": "#e31a1c",
-            "Africa": "#ff7f00",
-            "Asia": "#6a3d9a"
+            "Europa": "#6e93cb",
+            "Oceania": "#6e4876",
+            "America": "#fa846e",
+            "Africa": "#cd6775",
+            "Asia": "#8c60a2"
         };
 
         const longitudMaxima = 250;
@@ -173,6 +181,7 @@ function BrechaGenero() {
         const paisTexto = SVG1.append("text").attr("x", 80).attr("y", 240).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
         const rankingTexto = SVG1.append("text").attr("x", 120).attr("y", 270).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
         const puntuacionTexto = SVG1.append("text").attr("x", 140).attr("y", 300).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
+        const stemTexto = SVG1.append("text").attr("x", 220).attr("y", 330).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
 
         // Ajustado opacidades de los círculos y textos. 
         d3.selectAll(".circulo, .texto, .barra")
@@ -182,6 +191,7 @@ function BrechaGenero() {
                         paisTexto.text(d.pais);
                         rankingTexto.text(d.ranking);
                         puntuacionTexto.text(d.puntuacion);
+                        stemTexto.text(d.p_stem)
                         return 1;
                     } else {
                         return 0.2;
