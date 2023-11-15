@@ -177,33 +177,53 @@ function BrechaGenero() {
             .text(d => d.ranking)
             .style("fill", "white");
 
+
+        // nombre del continente en el centro
+        const textoContinente = svg2.append("text")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("text-anchor", "middle")
+            .attr("alignment-baseline", "middle")
+            .attr("font-family", "Montserrat")
+            .attr("font-size", "40px")
+            .attr("font-weight", "bold")
+            .attr("class", "textoContinente");
+
         // Ajusta los elementos de texto para mostrar los datos del círculo actual
         const paisTexto = SVG1.append("text").attr("x", 80).attr("y", 240).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
         const rankingTexto = SVG1.append("text").attr("x", 120).attr("y", 270).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
         const puntuacionTexto = SVG1.append("text").attr("x", 140).attr("y", 300).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
         const stemTexto = SVG1.append("text").attr("x", 220).attr("y", 330).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light")
+ 
 
-        // Ajustado opacidades de los círculos y textos. 
         d3.selectAll(".circulo, .texto, .barra")
             .on("mouseover", function (event, d) {
+                const continenteSeleccionado = d.continente;
+
                 d3.selectAll(".circulo, .texto, .barra").style("opacity", function (otherData) {
-                    if (otherData === d) {
-                        paisTexto.text(d.pais);
-                        rankingTexto.text(d.ranking);
-                        puntuacionTexto.text(d.puntuacion);
-                        stemTexto.text(`${d.p_stem}%`)
+                    if (otherData.continente === continenteSeleccionado) {
                         return 1;
                     } else {
                         return 0.2;
                     }
                 });
+
+                paisTexto.text(d.pais);
+                rankingTexto.text(d.ranking);
+                puntuacionTexto.text(d.puntuacion);
+                stemTexto.text(`${d.p_stem}%`);
+                textoContinente.text(continenteSeleccionado)
+                    .attr("fill", esquemaColores(continenteSeleccionado));
             })
             .on("mouseout", function () {
-                d3.selectAll(".circulo, .texto , .barra").style("opacity", 1);
+                // Restaura la opacidad y borra los textos
+                d3.selectAll(".circulo, .texto, .barra").style("opacity", 1);
                 paisTexto.text("");
                 rankingTexto.text("");
                 puntuacionTexto.text("");
                 stemTexto.text("");
+                textoContinente.text("");
             });
+
     });
 }
