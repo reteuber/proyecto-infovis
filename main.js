@@ -181,7 +181,7 @@ function BrechaGenero() {
         const paisTexto = SVG1.append("text").attr("x", 80).attr("y", 240).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
         const rankingTexto = SVG1.append("text").attr("x", 120).attr("y", 270).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
         const puntuacionTexto = SVG1.append("text").attr("x", 140).attr("y", 300).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
-        const stemTexto = SVG1.append("text").attr("x", 220).attr("y", 330).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
+        const stemTexto = SVG1.append("text").attr("x", 220).attr("y", 330).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light")
 
         // Ajustado opacidades de los círculos y textos. 
         d3.selectAll(".circulo, .texto, .barra")
@@ -191,7 +191,7 @@ function BrechaGenero() {
                         paisTexto.text(d.pais);
                         rankingTexto.text(d.ranking);
                         puntuacionTexto.text(d.puntuacion);
-                        stemTexto.text(d.p_stem)
+                        stemTexto.text(`${d.p_stem}%`)
                         return 1;
                     } else {
                         return 0.2;
