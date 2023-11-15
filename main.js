@@ -11,11 +11,11 @@ const HEIGHT_VIS_1 = 850;
 SVG1.attr("width", WIDTH_VIS_1).attr("height", HEIGHT_VIS_1);
 
 SVG1.append("text")
-    .attr("x", WIDTH_VIS_1 / 2 - 50)
+    .attr("x", WIDTH_VIS_1 / 2 - 100)
     .attr("y", 210)
     .classed('texto-titulo', true)
     .attr("font-weight", "bold")
-    .text("Descripción");
+    .text("Descripción por país");
 
 SVG1.append("text")
     .attr("x", 30)
@@ -185,9 +185,29 @@ function BrechaGenero() {
             .attr("text-anchor", "middle")
             .attr("alignment-baseline", "middle")
             .attr("font-family", "Montserrat")
-            .attr("font-size", "40px")
+            .attr("font-size", "50px")
             .attr("font-weight", "bold")
             .attr("class", "textoContinente");
+
+        const textoPuntuacionPromedio = svg2.append("text")
+            .attr("x", 0)
+            .attr("y", 40)  
+            .attr("text-anchor", "middle")
+            .attr("alignment-baseline", "middle")
+            .attr("font-family", "Montserrat")
+            .attr("font-size", "14px")
+            .attr("font-weight", "bold")
+            .attr("class", "textoPromedio");
+        
+        const textoStemPromedio = svg2.append("text")
+            .attr("x", 0)
+            .attr("y", 60) 
+            .attr("text-anchor", "middle")
+            .attr("alignment-baseline", "middle")
+            .attr("font-family", "Montserrat")
+            .attr("font-size", "14px")
+            .attr("font-weight", "bold")
+            .attr("class", "textoPromedio");
 
         // Ajusta los elementos de texto para mostrar los datos del círculo actual
         const paisTexto = SVG1.append("text").attr("x", 80).attr("y", 240).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
@@ -199,7 +219,12 @@ function BrechaGenero() {
         d3.selectAll(".circulo, .texto, .barra")
             .on("mouseover", function (event, d) {
                 const continenteSeleccionado = d.continente;
-
+        
+                const datosContinente = datosReducidos.filter(data => data.continente === continenteSeleccionado);
+        
+                const puntuacionPromedio = d3.mean(datosContinente, d => d.puntuacion);
+                const stemPromedio = d3.mean(datosContinente, d => d.p_stem);
+        
                 d3.selectAll(".circulo, .texto, .barra").style("opacity", function (otherData) {
                     if (otherData.continente === continenteSeleccionado) {
                         return 1;
@@ -207,23 +232,26 @@ function BrechaGenero() {
                         return 0.2;
                     }
                 });
-
+        
                 paisTexto.text(d.pais);
                 rankingTexto.text(d.ranking);
                 puntuacionTexto.text(d.puntuacion);
                 stemTexto.text(`${d.p_stem}%`);
                 textoContinente.text(continenteSeleccionado)
                     .attr("fill", esquemaColores(continenteSeleccionado));
+                textoPuntuacionPromedio.text(`Puntuación promedio: ${puntuacionPromedio.toFixed(2)}`);
+                textoStemPromedio.text(`Porcentaje de mujeres en STEM promedio: ${stemPromedio.toFixed(2)}%`);
             })
             .on("mouseout", function () {
-                // Restaura la opacidad y borra los textos
                 d3.selectAll(".circulo, .texto, .barra").style("opacity", 1);
                 paisTexto.text("");
                 rankingTexto.text("");
                 puntuacionTexto.text("");
                 stemTexto.text("");
                 textoContinente.text("");
+                textoPuntuacionPromedio.text("");
+                textoStemPromedio.text("");
             });
-
+    
     });
 }
