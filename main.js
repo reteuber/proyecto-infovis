@@ -203,6 +203,7 @@ function BrechaGenero() {
                 paisTexto.text("");
                 rankingTexto.text("");
                 puntuacionTexto.text("");
+                stemTexto.text("");
             });
     });
 }
