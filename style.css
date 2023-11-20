@@ -132,13 +132,14 @@ img {
 #vis-1 svg,
 #vis-2 svg,
 #vis-3 svg,
-/* #vis-4 svg,
+#vis-4 svg,
 #vis-5 svg,
-#vis-6 svg, */
+#vis-6 svg,
 #vis-7 svg,
 #vis-8 svg
+
 /* #vis-9 svg  */
-{
+    {
     border: solid 4px white;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
