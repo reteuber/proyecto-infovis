@@ -11,8 +11,8 @@ const MAPA = "https://raw.githubusercontent.com/yeyedevs/mapa-censo-chile/master
 const WIDTH_VIS_3_MAPA = 500;
 const HEIGHT_VIS_3_MAPA = 850;
 
-const WIDTH_VIS_8 = 500;
-const HEIGHT_VIS_8 = 500;
+const WIDTH_VIS_8 = 600;
+const HEIGHT_VIS_8 = 600;
 
 
 const color1 = "#FCC560";
@@ -51,6 +51,7 @@ function visualizacionMapa() {
             .data(chile.features)
             .enter()
             .append("path")
+            .attr("class", "clase-mapa")
             .attr("d", path)
             .attr("fill", d => {
                 const proporcionMujeres = d.properties.MUJERES / d.properties.PERSONAS;
@@ -60,7 +61,8 @@ function visualizacionMapa() {
             .on("mouseover", function (event, d) {
                 const regionSeleccionada = d.properties.REGION_NAME;
 
-                d3.selectAll("path").style("opacity", function (otherData) {
+                d3.selectAll(".clase-mapa").style("opacity", function (otherData) {
+                    console.log(otherData)
                     return otherData.properties.REGION_NAME === regionSeleccionada ? 1 : 0.2;
                 });
 
@@ -99,6 +101,7 @@ function visualizacionMapa() {
 
 }
 
+
 function visualizacionPersonas(nombre_region) {
   d3.json(DATOS4).then(function(investigadores) {
     const datosRegion = investigadores.find(d => d.Region === nombre_region);
@@ -114,12 +117,17 @@ function visualizacionPersonas(nombre_region) {
       const espaciadoX = 30; 
       const espaciadoY = 50;
       const offsetX = (WIDTH_VIS_8 - ladoCuadrado * espaciadoX) / 2;
-      const offsetY = (HEIGHT_VIS_8 - ladoCuadrado * espaciadoY) / 2;
+      const offsetY = (HEIGHT_VIS_8 - ladoCuadrado * espaciadoY) + 30;
+
+
+      const regionLeyenda = SVG8.append("text").attr("x", 30).attr("y", 40).attr("font-family", "Montserrat").attr("font-size", "24px").attr("font-weight", "bold").attr("fill", "#252850");
+      const mujeresLeyenda = SVG8.append("text").attr("x", 543).attr("y", HEIGHT_VIS_8 - 491).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
+      const hombresLeyenda = SVG8.append("text").attr("x", 553).attr("y", HEIGHT_VIS_8 - 460).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
 
       SVG8.selectAll(".persona")
         .data(d3.range(totalCirculos))
         .enter()
-        .append("g") 
+        .append("g")
         .attr("transform", function(d, i) {
           const col = i % ladoCuadrado;
           const row = Math.floor(i / ladoCuadrado);
@@ -147,8 +155,42 @@ function visualizacionPersonas(nombre_region) {
         .on("mouseout", function() {
 
         });
+        regionLeyenda.text(datosRegion.Region)
+        mujeresLeyenda.text(`${datosRegion.Mujeres}%`);
+        hombresLeyenda.text(`${datosRegion.Hombres}%`);
+
+        const circleRadius = 8;
+
+        SVG8.append("circle")
+          .attr("cx", WIDTH_VIS_8 - 135)
+          .attr("cy", 103)
+          .attr("r", circleRadius)
+          .attr("fill", "#D53302"); 
+
+        SVG8.append("text")
+          .attr("x", WIDTH_VIS_8 - 120)
+          .attr("y", 108)
+          .attr("font-family", "Montserrat")
+          .attr("font-size", "14px")
+          .attr("font-weight", "bold")
+          .text("Mujeres");
+
+        SVG8.append("circle")
+          .attr("cx", WIDTH_VIS_8 - 135)
+          .attr("cy", 135)
+          .attr("r", circleRadius)
+          .attr("fill", "#8FB1BE");
+
+        SVG8.append("text")
+          .attr("x", WIDTH_VIS_8 - 120)
+          .attr("y", 140)
+          .attr("font-family", "Montserrat")
+          .attr("font-size", "14px")
+          .attr("font-weight", "bold")
+          .text("Hombres");
     } else {
       console.error(`No se encontraron datos para la región: ${nombre_region}`);
     }
   });
 }
+
