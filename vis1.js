@@ -80,11 +80,11 @@ function BrechaGenero() {
 
         // Escala de color según continente
         const coloresPersonalizados = {
-            "Europa": "#6e93cb",
-            "Oceania": "#6e4876",
-            "America": "#fa846e",
-            "Africa": "#cd6775",
-            "Asia": "#8c60a2"
+            "Europa": "#A0CBAD",
+            "Oceania": "#252850",
+            "America": "#FCC560",
+            "Africa": "#D53302",
+            "Asia": "#8FB1BE"
         };
 
         const longitudMaxima = 250;
