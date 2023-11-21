@@ -45,94 +45,103 @@ const svg8 = SVG8.append("g")
 
 let regionSeleccionada = null;
 
+let hover = true;
+
 visualizacionMapa();
 
+
 function visualizacionMapa() {
-    d3.json(MAPA).then(function (chile) {
-        svg7.selectAll("path")
-            .data(chile.features)
-            .enter()
-            .append("path")
-            .attr("class", "clase-mapa")
-            .attr("d", path)
-            .attr("fill", d => {
-                const proporcionMujeres = d.properties.MUJERES / d.properties.PERSONAS;
-                
-                return colorScale(proporcionMujeres);
-            })
-            .on("mouseover", function (event, d) {
-                const regionSeleccionada = d.properties.REGION_NAME;
 
-                d3.selectAll(".clase-mapa").style("opacity", function (otherData) {
-                    return otherData.properties.REGION_NAME === regionSeleccionada ? 1 : 0.2;
-                });
+  d3.json(MAPA).then(function (chile) {
+      svg7.selectAll("path")
+          .data(chile.features)
+          .enter()
+          .append("path")
+          .attr("class", "clase-mapa")
+          .attr("d", path)
+          .attr("fill", d => {
+              const proporcionMujeres = d.properties.MUJERES / d.properties.PERSONAS;
+              return colorScale(proporcionMujeres);
+          })
+          .on("mouseover", function (event, d) {
+              if (regionSeleccionada === null) {
+                  const regionActual = d.properties.REGION_NAME;
 
-                regionTexto.text(regionSeleccionada);
-                mujeresTexto.text(`${((d.properties.MUJERES / d.properties.PERSONAS) * 100).toFixed(2)}%`);
-                hombresTexto.text(`${((d.properties.HOMBRES / d.properties.PERSONAS) * 100).toFixed(2)}%`);
-                totalTexto.text(`${d.properties.PERSONAS} personas`);
-                leyenda_mujeres.text("Porcentaje de mujeres:");
-                leyenda_hombres.text("Porcentaje de hombres:");
-                leyenda_total.text("Población total:");
-            })
-            // .on("mouseout", function () {
-            //     d3.selectAll("path").style("opacity", 1);
-            //     regionTexto.text("");
-            //     mujeresTexto.text("");
-            //     hombresTexto.text("");
-            //     totalTexto.text("");
-            //     leyenda_mujeres.text("");
-            //     leyenda_hombres.text("");
-            //     leyenda_total.text("");
-            // })
-
-            .on("click", function (event, d) {
-              if (regionSeleccionada === d.properties.REGION_NAME) {
-                regionSeleccionada = null;
-                d3.selectAll("path").style("opacity", 1);
-                regionTexto.text("");
-                mujeresTexto.text("");
-                hombresTexto.text("");
-                totalTexto.text("");
-                leyenda_mujeres.text("");
-                leyenda_hombres.text("");
-                leyenda_total.text("");
-                visualizacionPromedioChile();
-              } else {
-                regionSeleccionada = d.properties.REGION_NAME;
-                d3.selectAll(".clase-mapa").style("opacity", function (otherData) {
-                  return otherData.properties.REGION_NAME === regionSeleccionada ? 1 : 0.2;
+                  d3.selectAll(".clase-mapa").style("opacity", function (otherData) {
+                      return otherData.properties.REGION_NAME === regionActual ? 1 : 0.2;
                   });
-                regionTexto.text(regionSeleccionada);
-                mujeresTexto.text(`${((d.properties.MUJERES / d.properties.PERSONAS) * 100).toFixed(2)}%`);
-                hombresTexto.text(`${((d.properties.HOMBRES / d.properties.PERSONAS) * 100).toFixed(2)}%`);
-                totalTexto.text(`${d.properties.PERSONAS} personas`);
-                leyenda_mujeres.text("Porcentaje de mujeres:");
-                leyenda_hombres.text("Porcentaje de hombres:");
-                leyenda_total.text("Población total:");
-                
-                visualizacionPersonas(d.properties.REGION_NAME);
-            }
-            console.log(regionSeleccionada)
-              
 
-                 
-    })
+                  regionTexto.text(regionActual);
+                  mujeresTexto.text(`${((d.properties.MUJERES / d.properties.PERSONAS) * 100).toFixed(2)}%`);
+                  hombresTexto.text(`${((d.properties.HOMBRES / d.properties.PERSONAS) * 100).toFixed(2)}%`);
+                  totalTexto.text(`${d.properties.PERSONAS} personas`);
+                  leyenda_mujeres.text("Porcentaje de mujeres:");
+                  leyenda_hombres.text("Porcentaje de hombres:");
+                  leyenda_total.text("Población total:");
+              }
+          })
+          .on("mouseout", function () {
+              if (regionSeleccionada === null) {
+                  d3.selectAll(".clase-mapa").style("opacity", 1);
+                  regionTexto.text("");
+                  mujeresTexto.text("");
+                  hombresTexto.text("");
+                  totalTexto.text("");
+                  leyenda_mujeres.text("");
+                  leyenda_hombres.text("");
+                  leyenda_total.text("");
+              }
+          })
+          .on("click", function (event, d) {
+              if (regionSeleccionada === d.properties.REGION_NAME) {
+                  regionSeleccionada = null;
+                  d3.selectAll("path").style("opacity", 1);
+                  regionTexto.text("");
+                  mujeresTexto.text("");
+                  hombresTexto.text("");
+                  totalTexto.text("");
+                  leyenda_mujeres.text("");
+                  leyenda_hombres.text("");
+                  leyenda_total.text("");
+                  visualizacionPromedioChile();
+              } else {
+                  regionSeleccionada = d.properties.REGION_NAME;
+                  d3.selectAll(".clase-mapa").style("opacity", function (otherData) {
+                      return otherData.properties.REGION_NAME === regionSeleccionada ? 1 : 0.2;
+                  });
+                  regionTexto.text(regionSeleccionada);
+                  mujeresTexto.text(`${((d.properties.MUJERES / d.properties.PERSONAS) * 100).toFixed(2)}%`);
+                  hombresTexto.text(`${((d.properties.HOMBRES / d.properties.PERSONAS) * 100).toFixed(2)}%`);
+                  totalTexto.text(`${d.properties.PERSONAS} personas`);
+                  leyenda_mujeres.text("Porcentaje de mujeres:");
+                  leyenda_hombres.text("Porcentaje de hombres:");
+                  leyenda_total.text("Población total:");
 
-    const regionTexto = svg7.append("text").attr("x", 0).attr("y", 16).attr("font-family", "Montserrat").attr("font-size", "18px").attr("font-weight", "bold").attr("fill", "#8FB1BE");
-    const mujeresTexto = svg7.append("text").attr("x", 187).attr("y", 36).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
-    const hombresTexto = svg7.append("text").attr("x", 193).attr("y", 56).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
-    const totalTexto = svg7.append("text").attr("x", 130).attr("y", 76).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
-    const leyenda_mujeres = svg7.append("text").attr("x", 0).attr("y", 35).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "bold");
-    const leyenda_hombres = svg7.append("text").attr("x", 0).attr("y", 55).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "bold");
-    const leyenda_total = svg7.append("text").attr("x", 0).attr("y", 75).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "bold");
+                  visualizacionPersonas(d.properties.REGION_NAME);
+              }
+          });
+          if (regionSeleccionada === null){
+            visualizacionPromedioChile()
+          }
 
-})};
+      console.log(regionSeleccionada);
+  });
+
+  const regionTexto = svg7.append("text").attr("x", 0).attr("y", 16).attr("font-family", "Montserrat").attr("font-size", "18px").attr("font-weight", "bold").attr("fill", "#8FB1BE");
+  const mujeresTexto = svg7.append("text").attr("x", 187).attr("y", 36).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
+  const hombresTexto = svg7.append("text").attr("x", 193).attr("y", 56).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
+  const totalTexto = svg7.append("text").attr("x", 130).attr("y", 76).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
+  const leyenda_mujeres = svg7.append("text").attr("x", 0).attr("y", 35).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "bold");
+  const leyenda_hombres = svg7.append("text").attr("x", 0).attr("y", 55).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "bold");
+  const leyenda_total = svg7.append("text").attr("x", 0).attr("y", 75).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "bold");
+}
+
 
 
 function visualizacionPersonas(nombre_region) {
   d3.json(DATOS4).then(function(investigadores) {
     const datosRegion = investigadores.find(d => d.Region === nombre_region);
+
 
     if (datosRegion) {
       SVG8.selectAll("*").remove();
@@ -221,6 +230,7 @@ function visualizacionPersonas(nombre_region) {
     }
   });
 };
+
 
 
 function visualizacionPromedioChile() {
