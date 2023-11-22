@@ -4,6 +4,7 @@ const SVG9 = d3.select("#vis-9").append("svg");
 
 const DATOS3 = "https://raw.githubusercontent.com/reteuber/Bases-datos-proyecto/main/censo.json";
 const DATOS4 = "https://raw.githubusercontent.com/reteuber/Bases-datos-proyecto/main/investigadores.json"
+const DATOS5 = "https://raw.githubusercontent.com/reteuber/Bases-datos-proyecto/main/investigadoras.json"
 const MAPA = "https://raw.githubusercontent.com/yeyedevs/mapa-censo-chile/master/regiones.geojson";
 
 // ----------------------------------  VISUALIZACIÓN 3  --------------------------------------------
@@ -13,6 +14,10 @@ const HEIGHT_VIS_3_MAPA = 850;
 
 const WIDTH_VIS_8 = 600;
 const HEIGHT_VIS_8 = 600;
+
+
+const WIDTH_VIS_9 = 500;
+const HEIGHT_VIS_9 = 850;
 
 
 const color1 = "#FCC560";
@@ -28,7 +33,11 @@ SVG7.attr("width", WIDTH_VIS_3_MAPA).attr("height", HEIGHT_VIS_3_MAPA);
 
 SVG8.attr("width", WIDTH_VIS_8).attr("height", HEIGHT_VIS_8);
 
+SVG9.attr("width", WIDTH_VIS_9).attr("height", HEIGHT_VIS_9);
+
 const svg7 = SVG7.append("g")
+
+const svg9 = SVG9.append("g")
 
 const projection = d3.geoMercator()
   .center([-71, -38.7])
@@ -47,6 +56,12 @@ let regionSeleccionada = null;
 
 let hover = true;
 
+// SVG9.append("circle")
+//     .attr("cx", WIDTH_VIS_9 / 2+1)
+//     .attr("cy", WIDTH_VIS_9 / 2 - 120)
+//     .attr("r", 110)
+//     .attr("fill", "#A0CBAD")
+//     .attr("opacity", 1); // ver como poner esto sin que tape la foto (por ahora le voy a poner baja opacidad)
 visualizacionMapa();
 
 
@@ -118,6 +133,7 @@ function visualizacionMapa() {
                   leyenda_total.text("Población total:");
 
                   visualizacionPersonas(d.properties.REGION_NAME);
+                  visualizacionInvestigadoras(d.properties.REGION_NAME);
               }
           });
           if (regionSeleccionada === null){
@@ -326,3 +342,47 @@ function visualizacionPromedioChile() {
     }
   });
 }
+
+function visualizacionInvestigadoras(region_seleccionada) {
+
+  d3.json(DATOS5).then(function (investigadoras) {
+    var investigadorasRegion = investigadoras.filter(function (investigadora) {
+      return investigadora.region === region_seleccionada;
+    });
+
+    var investigadoraGroup = svg9.selectAll("g")
+      .data(investigadorasRegion)
+      .enter()
+      .append("g")
+      .attr("transform", function (d) {
+        var x = (WIDTH_VIS_9 - 200) / 2; 
+        var y = 30; 
+        return "translate(" + x + "," + y + ")";
+      });
+
+    investigadoraGroup.append("image")
+      .attr("xlink:href", function (d) {
+        return "assets/investigadora" + d.ID + ".png";
+      })
+      .attr("width", 200)
+      .attr("height", 200);
+
+    if (investigadorasRegion.length > 0) {
+      nombre.text(investigadorasRegion[0].nombre); 
+      area.text(investigadorasRegion[0].area); 
+    } 
+  })
+
+  const area_investigadora = svg9.append("text").attr("x", WIDTH_VIS_9 / 2) .attr("y", 310).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "bold").text("Área de investigación").attr("text-anchor", "middle")
+  const area = svg9.append("text").attr("x", 20).attr("y", 340).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
+
+  const nombre = svg9.append("text")
+    .attr("x", WIDTH_VIS_9 / 2) 
+    .attr("y", 280)
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "22px")
+    .attr("font-weight", "bold")
+    .attr("text-anchor", "middle") 
+
+}
+
