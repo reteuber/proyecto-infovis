@@ -344,7 +344,6 @@ function visualizacionPromedioChile() {
 }
 
 function visualizacionInvestigadoras(region_seleccionada) {
-
   d3.json(DATOS5).then(function (investigadoras) {
     var investigadorasRegion = investigadoras.filter(function (investigadora) {
       return investigadora.region === region_seleccionada;
@@ -355,8 +354,8 @@ function visualizacionInvestigadoras(region_seleccionada) {
       .enter()
       .append("g")
       .attr("transform", function (d) {
-        var x = (WIDTH_VIS_9 - 200) / 2; 
-        var y = 30; 
+        var x = (WIDTH_VIS_9 - 200) / 2;
+        var y = 30;
         return "translate(" + x + "," + y + ")";
       });
 
@@ -368,21 +367,54 @@ function visualizacionInvestigadoras(region_seleccionada) {
       .attr("height", 200);
 
     if (investigadorasRegion.length > 0) {
-      nombre.text(investigadorasRegion[0].nombre); 
-      area.text(investigadorasRegion[0].area); 
-    } 
-  })
+      var areaTexto = investigadorasRegion[0].area;
+      // Dividir el texto en líneas usando '\n'
+      var lineas = areaTexto.split('\n');
 
-  const area_investigadora = svg9.append("text").attr("x", WIDTH_VIS_9 / 2) .attr("y", 310).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "bold").text("Área de investigación").attr("text-anchor", "middle")
-  const area = svg9.append("text").attr("x", 20).attr("y", 340).attr("font-family", "Montserrat").attr("font-size", "15px").attr("font-weight", "light");
+      // Añadir líneas de texto usando tspan
+      area.selectAll("tspan")
+        .data(lineas)
+        .enter()
+        .append("tspan")
+        .attr("x", 20)
+        .attr("dy", 20) // Ajusta este valor según sea necesario
+        .text(function (d) {
+          return d;
+        });
+
+      nombre.text(investigadorasRegion[0].nombre);
+    }
+  });
+
+  const area_investigadora = svg9.append("text")
+    .attr("x", WIDTH_VIS_9 / 2)
+    .attr("y", 310)
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "15px")
+    .attr("font-weight", "bold")
+    .text("Área de investigación")
+    .attr("text-anchor", "middle");
+
+  const area = svg9.append("text")
+    .attr("x", WIDTH_VIS_9 / 2)
+    .attr("y", 340)
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "15px")
+    .attr("font-weight", "light")
+    .attr("text-anchor", "middle")
+    .attr("transform", function(d, i) {
+      return `translate(230,0)`;
+    })
 
   const nombre = svg9.append("text")
-    .attr("x", WIDTH_VIS_9 / 2) 
+    .attr("x", WIDTH_VIS_9 / 2)
     .attr("y", 280)
     .attr("font-family", "Montserrat")
     .attr("font-size", "22px")
     .attr("font-weight", "bold")
-    .attr("text-anchor", "middle") 
-
+    .attr("text-anchor", "middle");
 }
 
+function todasInvestigadoras(){
+
+}
