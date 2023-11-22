@@ -119,6 +119,7 @@ function visualizacionMapa() {
                   leyenda_hombres.text("");
                   leyenda_total.text("");
                   visualizacionPromedioChile();
+                  todasInvestigadoras();
               } else {
                   regionSeleccionada = d.properties.REGION_NAME;
                   d3.selectAll(".clase-mapa").style("opacity", function (otherData) {
@@ -415,6 +416,68 @@ function visualizacionInvestigadoras(region_seleccionada) {
     .attr("text-anchor", "middle");
 }
 
-function todasInvestigadoras(){
+function todasInvestigadoras() {
+  d3.json(DATOS5).then(function (investigadoras) {
+    area_investigadora.text("");
+    area.text("");
+    nombre.text("");
 
+    var columnas = 3;
+    var filas = 5;
+    var anchoImagen = 120;
+    var altoImagen = 120;
+    var espaciadoX = 40;
+    var espaciadoY = 40;
+
+    var imagenesGroup = svg9.selectAll("g.imagenes")
+      .data([0])
+      .enter()
+      .append("g")
+      .attr("class", "imagenes");
+
+    var imagenes = imagenesGroup.selectAll("image")
+      .data(investigadoras)
+      .enter()
+      .append("image")
+      .attr("xlink:href", function (d) {
+        return "assets/investigadora" + d.ID + ".png";
+      })
+      .attr("x", function (d, i) {
+        var columna = i % columnas;
+        return columna * (anchoImagen + espaciadoX)+ 16 + (WIDTH_VIS_9 - (columnas * (anchoImagen + espaciadoX))) / 2;
+      })
+      .attr("y", function (d, i) {
+        var fila = Math.floor(i / columnas);
+        return fila * (altoImagen + espaciadoY) + 70; 
+      })
+      .attr("width", anchoImagen)
+      .attr("height", altoImagen);
+
+  });
+  const area_investigadora = svg9.append("text")
+    .attr("x", WIDTH_VIS_9 / 2)
+    .attr("y", 310)
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "15px")
+    .attr("font-weight", "bold")
+    .text("Área de investigación")
+    .attr("text-anchor", "middle");
+
+  const area = svg9.append("text")
+    .attr("x", WIDTH_VIS_9 / 2)
+    .attr("y", 340)
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "15px")
+    .attr("font-weight", "light")
+    .attr("text-anchor", "middle");
+
+  const nombre = svg9.append("text")
+    .attr("x", WIDTH_VIS_9 / 2)
+    .attr("y", 280)
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "22px")
+    .attr("font-weight", "bold")
+    .attr("text-anchor", "middle");
 }
+
+
