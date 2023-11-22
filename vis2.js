@@ -22,7 +22,7 @@ function StemChile() {
         console.log(data);
 
         // Datos para los niveles y colores
-        const niveles = ["Pregrado", "Magister", "Doctorado"];
+        const niveles = ["Pregrado", "Magíster", "Doctorado"];
         const color = "#c9c9c9"; // Color crema oscuro
         const barraColor = "rgba(201, 201, 201, 0.5)"; // Color de las barras laterales con menor opacidad
 
@@ -178,10 +178,39 @@ function StemChile() {
             .text(d => d)
             .attr("fill", "white") // Cambia el color del texto a blanco
             .style("font-family", "Lato, sans-serif");
+
+
+        // Botón para Ciencias
+        d3.select("#btnCiencias")
+            .on("click", function () {
+                updateBars("Ciencias");
+            });
+
+        // Botón para Tecnología
+        d3.select("#btnTecnologia")
+            .on("click", function () {
+                updateBars("Tecnologia");
+            });
     });
 }
 
+function updateBars(tipo) {
+    d3.json(DATOS2).then(data => {
+        // ... (código anterior)
 
+        SVG5.selectAll("rect.barraIzquierda2")
+            .data(niveles)
+            .transition()
+            .duration(500) // Duración de la transición en milisegundos
+            .attr("width", d => barraWidth2 * (data.find(item => item.Nivel === d)[tipo] / 100)); // Ajustar la longitud según los datos seleccionados
+
+        SVG5.selectAll("rect.barraDerecha2")
+            .data(niveles)
+            .transition()
+            .duration(500) // Duración de la transición en milisegundos
+            .attr("width", d => barraWidth2 * ((100 - data.find(item => item.Nivel === d)[tipo]) / 100)); // Ajustar la longitud según los datos seleccionados
+    });
+}
 
 // Conclusiones   -----------------------------------------------------------------------------------
 
