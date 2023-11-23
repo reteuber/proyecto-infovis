@@ -12,7 +12,7 @@ const MAPA = "https://raw.githubusercontent.com/yeyedevs/mapa-censo-chile/master
 const WIDTH_VIS_3_MAPA = 380;
 const HEIGHT_VIS_3_MAPA = 850;
 
-const WIDTH_VIS_8 = 500;
+const WIDTH_VIS_8 = 465;
 const HEIGHT_VIS_8 = 850;
 
 
@@ -98,6 +98,7 @@ const investigadorasTotales = svg9.append("text")
 .attr("font-size", "20px")
 .attr("font-weight", "bold")
 .attr("text-anchor", "middle")
+.attr("fill", "#A0CBAD")
 .attr("transform", function (d) {
   return "translate(220, -20)";
 });
@@ -226,41 +227,48 @@ function visualizacionPersonas(nombre_region) {
       const offsetY = (HEIGHT_VIS_8 - ladoCuadrado * espaciadoY) + 30;
 
 
-      const regionLeyenda = SVG8.append("text").attr("x", 30).attr("y", 40).attr("font-family", "Montserrat").attr("font-size", "24px").attr("font-weight", "bold").attr("fill", "#252850");
-      const mujeresLeyenda = SVG8.append("text").attr("x", 160).attr("y", HEIGHT_VIS_8 - 741).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
-      const hombresLeyenda = SVG8.append("text").attr("x", 170).attr("y", HEIGHT_VIS_8 - 710).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
-
-      SVG8.selectAll(".persona")
-        .data(d3.range(totalCirculos))
-        .enter()
-        .append("g")
-        .attr("transform", function(d, i) {
-          const col = i % ladoCuadrado;
-          const row = Math.floor(i / ladoCuadrado);
-          const x = offsetX + col * espaciadoX-55;
-          const y = 220 + row * espaciadoY;
-          return `translate(${x},${y})`;
-        })
-        .each(function(_, i) {
-          d3.select(this).append("rect")
-            .attr("width", 5)
-            .attr("height", 20)
-            .attr("x", -2)
-            .attr("y", -20)
-            .attr("fill", i < circulosMujeres ? "#D53302" : "#8FB1BE");
-
-          d3.select(this).append("circle")
-            .attr("cx", 0)
-            .attr("cy", -25)
-            .attr("r", 8)
-            .attr("fill", i < circulosMujeres ? "#D53302" : "#8FB1BE");
-        })
-        .on("mouseover", function(d) {
-
-        })
-        .on("mouseout", function() {
-
-        });
+      const regionLeyenda = SVG8.append("text")
+          .attr("x", -100).attr("y", 40).
+          attr("font-family", "Montserrat")
+          .attr("font-size", "24px")
+          .attr("font-weight", "bold")
+          .attr("fill", "#252850")
+          .attr("text-anchor", "middle")
+          .attr("transform", function (d) {
+                return "translate(330, -10)";
+              });
+              const mujeresLeyenda = SVG8.append("text").attr("x", 250).attr("y", HEIGHT_VIS_8 - 741).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
+              const hombresLeyenda = SVG8.append("text").attr("x", 260).attr("y", HEIGHT_VIS_8 - 710).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
+        
+              SVG8.selectAll(".persona")
+              .data(d3.range(totalCirculos))
+              .enter()
+              .append("g")
+              .attr("transform", function(d, i) {
+                const col = i % ladoCuadrado;
+                const row = Math.floor(i / ladoCuadrado);
+                const x = offsetX + col * espaciadoX+10;
+                const y = 220 + row * espaciadoY;
+                return `translate(${x},${y})`;
+              })
+              .each(function(_, i) {
+                d3.select(this).append("rect")
+                  .attr("width", 5)
+                  .attr("height", 20)
+                  .attr("x", -2)
+                  .attr("y", -20)
+                  .attr("fill", i < circulosMujeres ? "#D53302" : "#8FB1BE");
+      
+                d3.select(this).append("circle")
+                  .attr("cx", 0)
+                  .attr("cy", -25)
+                  .attr("r", 8)
+                  .attr("fill", i < circulosMujeres ? "#D53302" : "#8FB1BE");
+              })
+              .on("mouseover", function(d) {
+              })
+              .on("mouseout", function() {
+              });
         regionLeyenda.text(datosRegion.Region)
         mujeresLeyenda.text(`${datosRegion.Mujeres}%`);
         hombresLeyenda.text(`${datosRegion.Hombres}%`);
@@ -268,27 +276,27 @@ function visualizacionPersonas(nombre_region) {
         const circleRadius = 8;
 
         SVG8.append("circle")
-        .attr("cx", WIDTH_VIS_8 - 420)
+        .attr("cx", WIDTH_VIS_8 - 295)
         .attr("cy", 103)
         .attr("r", circleRadius)
         .attr("fill", "#D53302");
-
+  
       SVG8.append("text")
-        .attr("x", WIDTH_VIS_8 - 405)
+        .attr("x", WIDTH_VIS_8 - 280)
         .attr("y", 108)
         .attr("font-family", "Montserrat")
         .attr("font-size", "14px")
         .attr("font-weight", "bold")
         .text("Mujeres");
-
+  
       SVG8.append("circle")
-        .attr("cx", WIDTH_VIS_8 - 420)
+        .attr("cx", WIDTH_VIS_8 - 295)
         .attr("cy", 135)
         .attr("r", circleRadius)
         .attr("fill", "#8FB1BE");
-
+  
       SVG8.append("text")
-        .attr("x", WIDTH_VIS_8 - 405)
+        .attr("x", WIDTH_VIS_8 - 280)
         .attr("y", 140)
         .attr("font-family", "Montserrat")
         .attr("font-size", "14px")
@@ -323,9 +331,19 @@ function visualizacionPromedioChile() {
       const offsetY = (HEIGHT_VIS_8 - ladoCuadrado * espaciadoY) + 30;
 
 
-      const regionLeyenda = SVG8.append("text").attr("x", 30).attr("y", 40).attr("font-family", "Montserrat").attr("font-size", "24px").attr("font-weight", "bold").attr("fill", "#252850");
-      const mujeresLeyenda = SVG8.append("text").attr("x", 160).attr("y", HEIGHT_VIS_8 - 741).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
-      const hombresLeyenda = SVG8.append("text").attr("x", 170).attr("y", HEIGHT_VIS_8 - 710).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
+      const regionLeyenda = SVG8.append("text")
+          .attr("x", -100).attr("y", 40).
+          attr("font-family", "Montserrat")
+          .attr("font-size", "18px")
+          .attr("font-weight", "bold")
+          .attr("fill", "#252850")
+          .attr("text-anchor", "middle")
+          .attr("transform", function (d) {
+                return "translate(210, -30)";
+              });
+
+      const mujeresLeyenda = SVG8.append("text").attr("x", 250).attr("y", HEIGHT_VIS_8 - 741).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
+      const hombresLeyenda = SVG8.append("text").attr("x", 260).attr("y", HEIGHT_VIS_8 - 710).attr("font-family", "Montserrat").attr("font-size", "14px").attr("font-weight", "light");
 
       SVG8.selectAll(".persona")
         .data(d3.range(totalCirculos))
@@ -334,7 +352,7 @@ function visualizacionPromedioChile() {
         .attr("transform", function(d, i) {
           const col = i % ladoCuadrado;
           const row = Math.floor(i / ladoCuadrado);
-          const x = offsetX + col * espaciadoX-55;
+          const x = offsetX + col * espaciadoX+10;
           const y = 220 + row * espaciadoY;
           return `translate(${x},${y})`;
         })
@@ -357,7 +375,19 @@ function visualizacionPromedioChile() {
         .on("mouseout", function() {
         });
 
-      regionLeyenda.text("Promedio regiones de Chile");
+        var texto = "Porcentaje promedio de\ninvestigadoras(es) de las regiones de Chile"
+        var textooficial = texto.split('\n');
+  
+        regionLeyenda.selectAll("tspan")
+            .data(textooficial)
+            .enter()
+            .append("tspan")
+            .attr("x", 20)
+            .attr("dy", 20)
+            .text(function (d) {
+              return d;
+            });
+
       mujeresLeyenda.text(`${promedioMujeres.toFixed(1)}%`);
       hombresLeyenda.text(`${promedioHombres.toFixed(1)}%`);
       
@@ -365,32 +395,32 @@ function visualizacionPromedioChile() {
       const circleRadius = 8;
 
       SVG8.append("circle")
-        .attr("cx", WIDTH_VIS_8 - 420)
-        .attr("cy", 103)
-        .attr("r", circleRadius)
-        .attr("fill", "#D53302");
+      .attr("cx", WIDTH_VIS_8 - 295)
+      .attr("cy", 103)
+      .attr("r", circleRadius)
+      .attr("fill", "#D53302");
 
-      SVG8.append("text")
-        .attr("x", WIDTH_VIS_8 - 405)
-        .attr("y", 108)
-        .attr("font-family", "Montserrat")
-        .attr("font-size", "14px")
-        .attr("font-weight", "bold")
-        .text("Mujeres");
+    SVG8.append("text")
+      .attr("x", WIDTH_VIS_8 - 280)
+      .attr("y", 108)
+      .attr("font-family", "Montserrat")
+      .attr("font-size", "14px")
+      .attr("font-weight", "bold")
+      .text("Mujeres");
 
-      SVG8.append("circle")
-        .attr("cx", WIDTH_VIS_8 - 420)
-        .attr("cy", 135)
-        .attr("r", circleRadius)
-        .attr("fill", "#8FB1BE");
+    SVG8.append("circle")
+      .attr("cx", WIDTH_VIS_8 - 295)
+      .attr("cy", 135)
+      .attr("r", circleRadius)
+      .attr("fill", "#8FB1BE");
 
-      SVG8.append("text")
-        .attr("x", WIDTH_VIS_8 - 405)
-        .attr("y", 140)
-        .attr("font-family", "Montserrat")
-        .attr("font-size", "14px")
-        .attr("font-weight", "bold")
-        .text("Hombres");
+    SVG8.append("text")
+      .attr("x", WIDTH_VIS_8 - 280)
+      .attr("y", 140)
+      .attr("font-family", "Montserrat")
+      .attr("font-size", "14px")
+      .attr("font-weight", "bold")
+      .text("Hombres");
     } else {
       console.error("No se encontraron datos para calcular el promedio de Chile");
     }

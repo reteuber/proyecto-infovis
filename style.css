@@ -14,27 +14,36 @@
 
 /*------------------------------------------  BODY   -------------------------------------------*/
 body {
-    margin: 0 auto;
-    background-color:white;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    background-color: white;
     max-width: 90%;
     min-width: 500px;
     text-align: center;
     margin-bottom: 80px;
+    margin: 100px
 }
+
+.container {
+    text-align: center;
+}
+
 
 /*------------------------------------------  TEXTOS   -------------------------------------------*/
 
 h1 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 30;
-    font-size: 50px;
+    font-weight: bold;
+    font-size: 36px;
 }
+
+
 
 h2 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 20;
+    font-weight: bold;
     font-size: 28px;
-    color: rgb(77, 52, 121);
+    color: #D53302;
 }
 
 h3 {
