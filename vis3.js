@@ -168,6 +168,7 @@ function visualizacionMapa() {
                   leyenda_mujeres.text("");
                   leyenda_hombres.text("");
                   leyenda_total.text("");
+                  area_investigadora.text("");
                   visualizacionInvestigadoras(null, false);
                   visualizacionPromedioChile();
                   todasInvestigadoras(true);
@@ -429,6 +430,7 @@ function visualizacionPromedioChile() {
 
 function visualizacionInvestigadoras(region_seleccionada, mostrar) {
   svg9.selectAll("g.investigadoraGroup").remove();
+  area.text("");
 
   if (mostrar === true) {
     d3.json(DATOS5).then(function (investigadoras) {
@@ -485,6 +487,7 @@ function visualizacionInvestigadoras(region_seleccionada, mostrar) {
 
 
 function todasInvestigadoras(siono) {
+
   if (siono){
     d3.json(DATOS5).then(function (investigadoras) {
       area_investigadora.text("");
