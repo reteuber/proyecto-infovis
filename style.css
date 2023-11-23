@@ -15,7 +15,7 @@
 /*------------------------------------------  BODY   -------------------------------------------*/
 body {
     margin: 0 auto;
-    background-color: rgb(225, 217, 238);
+    background-color:white;
     max-width: 90%;
     min-width: 500px;
     text-align: center;
@@ -134,9 +134,7 @@ img {
 #vis-3 svg,
 #vis-4 svg,
 #vis-5 svg,
-#vis-6 svg,
-#vis-7 svg,
-#vis-8 svg{
+#vis-6 svg{
     border: solid 4px white;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
@@ -147,18 +145,25 @@ img {
     padding: 20px;
     box-sizing: border-box;
 }
-
+#vis-7 svg,
+#vis-8 svg,
 #vis-9 svg {
     border: solid 4px white;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
     width: auto;
     height: auto;
-    margin: 1%;
-    padding: 20px;
+    margin: 10px;
+    padding: 5px;
     box-sizing: border-box;
     align-items: center;
 }
+
+.stemchile {
+    display: flex;
+    justify-content: center;
+}
+
 /*------------------------------------------  FOOTER ------------------------------------------*/
 footer {
     width: 100%;
