@@ -121,13 +121,14 @@ img {
 /*------------------------------------------  BOTONES   ------------------------------------------*/
 .boton {
     padding: 10px 20px;
-    background-color: rgb(136, 27, 187);
-    border: 1px solid rgb(136, 27, 187) !important;
+    background-color: #A0CBAD;
+    border: 1px solid #A0CBAD !important;
     color: white;
     border-radius: 15px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
+    font-weight: bold;
 }
 
 .boton:hover {

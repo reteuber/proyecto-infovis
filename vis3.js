@@ -438,7 +438,7 @@ function visualizacionInvestigadoras(region_seleccionada, mostrar) {
         return investigadora.region === region_seleccionada;
       });
 
-      const investigadoraGroup = svg9.selectAll("g.investigadoraGroup")
+      var investigadoraGroup = svg9.selectAll("g.investigadoraGroup")
         .data(investigadorasRegion)
         .enter()
         .append("g")
