@@ -430,7 +430,6 @@ function visualizacionPromedioChile() {
 
 function visualizacionInvestigadoras(region_seleccionada, mostrar) {
   svg9.selectAll("g.investigadoraGroup").remove();
-  area.text("");
 
   if (mostrar === true) {
     d3.json(DATOS5).then(function (investigadoras) {
@@ -480,6 +479,7 @@ function visualizacionInvestigadoras(region_seleccionada, mostrar) {
     svg9.selectAll("g.investigadoraGroup").remove();
     nombre.text("");
     area_investigadora.text("");
+    area.text("")
   }
 }
 
