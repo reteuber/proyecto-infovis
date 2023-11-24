@@ -64,6 +64,11 @@ p {
     font-size: 14px;
 }
 
+.parrafoinforme{
+    font-weight: bold;
+    color: #8FB1BE;
+}
+
 .texto-titulo {
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;

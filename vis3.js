@@ -30,6 +30,7 @@ const degrade = t => {
 };
 
 
+
 SVG7.attr("width", WIDTH_VIS_3_MAPA).attr("height", HEIGHT_VIS_3_MAPA);
 
 SVG8.attr("width", WIDTH_VIS_8).attr("height", HEIGHT_VIS_8);
@@ -56,6 +57,76 @@ const svg8 = SVG8.append("g")
 let regionSeleccionada = null;
 
 let hover = true;
+
+function agregarLeyenda() {
+  const leyendaTexto1 = svg7.append("g")
+    .attr("transform", "translate(0, 58)");
+
+  const leyendaTexto2 = svg7.append("g")
+    .attr("transform", "translate(240, 58)");
+
+  const rectangulo = svg7.append("g")
+
+  const gradient = rectangulo
+    .append("defs")
+    .append("linearGradient")
+    .attr("id", "gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "0%");
+
+  gradient.append("stop")
+    .attr("offset", "0%")
+    .attr("style", `stop-color:${color1};stop-opacity:1`);
+
+  gradient.append("stop")
+    .attr("offset", "100%")
+    .attr("style", `stop-color:${color2};stop-opacity:1`);
+
+  rectangulo.append("rect")
+    .attr("x", 0)
+    .attr("y", 140)
+    .attr("width", 240)
+    .attr("height", 20)
+    .style("fill", "url(#gradient)");
+
+
+
+    const separacion = 1; // Ajusta según sea necesario
+
+    leyendaTexto1.append("text")
+      .attr("x", 0)
+      .attr("y", 40)
+      .attr("font-family", "Montserrat")
+      .attr("font-size", "10px")
+      .attr("font-weight", "bold")
+      .selectAll("tspan")
+      .data(["MENOR", "PROPORCIÓN", "DE MUJERES"])
+      .enter()
+      .append("tspan")
+      .attr("x", 0)
+      .attr("dy", (d, i) => i * separacion + 10)  
+      .text(d => d);
+    
+    leyendaTexto2.append("text")
+      .attr("x", 200)
+      .attr("y", 40)
+      .attr("font-family", "Montserrat")
+      .attr("font-size", "10px")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "end")
+      .selectAll("tspan")
+      .data(["MAYOR", "PROPORCIÓN", "DE MUJERES"])
+      .enter()
+      .append("tspan")
+      .attr("x", 0)
+      .attr("dy", (d, i) => i * separacion + 10)  
+      .text(d => d);
+    
+}
+
+
 
 // SVG9.append("circle")
 //     .attr("cx", WIDTH_VIS_9 / 2+1)
@@ -113,6 +184,9 @@ const region_inv = svg9.append("text")
 .attr("text-anchor", "middle");
 
 visualizacionMapa();
+
+
+agregarLeyenda();
 
 
 function visualizacionMapa() {
@@ -437,7 +511,7 @@ function visualizacionInvestigadoras(region_seleccionada, mostrar) {
         return investigadora.region === region_seleccionada;
       });
 
-      var investigadoraGroup = svg9.selectAll("g.investigadoraGroup")
+      const investigadoraGroup = svg9.selectAll("g.investigadoraGroup")
         .data(investigadorasRegion)
         .enter()
         .append("g")
