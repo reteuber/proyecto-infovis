@@ -128,13 +128,6 @@ function agregarLeyenda() {
 
 
 
-// SVG9.append("circle")
-//     .attr("cx", WIDTH_VIS_9 / 2+1)
-//     .attr("cy", WIDTH_VIS_9 / 2 - 120)
-//     .attr("r", 110)
-//     .attr("fill", "#A0CBAD")
-//     .attr("opacity", 1); // ver como poner esto sin que tape la foto (por ahora le voy a poner baja opacidad)
-
 const area_investigadora = svg9.append("text")
 .attr("x", WIDTH_VIS_9 / 2)
 .attr("y", 370)

@@ -76,6 +76,12 @@ p {
 
 }
 
+#visibilizar{
+    font-weight: bold;
+    font-size: 18px;
+    color: #8FB1BE;
+}
+
 /*----------------------------------  DIVS INDEX INFORME  ----------------------------------------*/
 .response {
     background-color: white;
