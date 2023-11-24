@@ -184,8 +184,6 @@ const region_inv = svg9.append("text")
 .attr("text-anchor", "middle");
 
 visualizacionMapa();
-
-
 agregarLeyenda();
 
 
@@ -504,6 +502,7 @@ function visualizacionPromedioChile() {
 
 function visualizacionInvestigadoras(region_seleccionada, mostrar) {
   svg9.selectAll("g.investigadoraGroup").remove();
+  area.text("")
 
   if (mostrar === true) {
     d3.json(DATOS5).then(function (investigadoras) {
