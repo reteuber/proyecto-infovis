@@ -248,3 +248,30 @@ const WIDTH_VIS_6 = 300;
 const HEIGHT_VIS_6 = 500;
 SVG6.attr("width", WIDTH_VIS_6).attr("height", HEIGHT_VIS_6);
 
+SVG6.append("text")
+    .attr("x", 30)
+    .attr("y", 100)
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "15px")
+    .attr("font-weight", "bold")
+    .text("Mujeres");
+
+SVG6.append("text")
+    .attr("x", 30)
+    .attr("y", 130)
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "15px")
+    .attr("font-weight", "bold")
+    .text("Hombres");
+
+SVG6.append("circle")
+    .attr("cx", 10)
+    .attr("cy", 96)
+    .attr("r", 9)
+    .attr("fill", "#D53302");
+
+SVG6.append("circle")
+    .attr("cx", 10)
+    .attr("cy", 126)
+    .attr("r", 9)
+    .attr("fill", "#8FB1BE");
