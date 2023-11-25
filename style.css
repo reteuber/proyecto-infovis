@@ -1,22 +1,22 @@
 /*------------------------------------------  HEADER   -------------------------------------------*/
 .header {
     width: 100vw;
-    height: 350px;
-    background-image: url('assets/header5.png');
+    height: 300px;
+    background-image: url('assets/header9.gif');
     background-size: auto 100px;
     background-size: cover;
-    background-position: center -300px;
-    border-radius: 0 0 250px 250px;
+    background-position: center;
+    border-radius: 0 0 100px 100px;
     margin: 0 auto;
     position: relative;
-    right: 7%;
+    right: 9%;
 }
 
 /*------------------------------------------  BODY   -------------------------------------------*/
 body {
     margin-top: 100px;
     margin-bottom: 50px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     max-width: 90%;
     min-width: 500px;
     text-align: center;
@@ -61,10 +61,10 @@ h4 {
 
 p {
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+    font-size: 1´5px;
 }
 
-.parrafoinforme{
+.parrafoinforme {
     font-weight: bold;
     color: #8FB1BE;
 }
@@ -76,7 +76,7 @@ p {
 
 }
 
-#visibilizar{
+#visibilizar {
     font-weight: bold;
     font-size: 18px;
     color: #8FB1BE;
@@ -130,6 +130,20 @@ img {
     font-weight: bolder;
 }
 
+#visualizacion1 {
+    width: 100%;
+}
+
+#visualizacion2 {
+    clear: both;
+}
+
+
+#visualizaicon3 {
+    clear: both;
+
+}
+
 /*------------------------------------------  BOTONES   ------------------------------------------*/
 .boton {
     padding: 10px 20px;
@@ -149,6 +163,7 @@ img {
     color: white;
 }
 
+
 /*--------------------------  SVG CONTAINERS VISUALIZACION 1 -------------------------------------*/
 
 #vis-1 svg,
@@ -156,7 +171,7 @@ img {
 #vis-3 svg,
 #vis-4 svg,
 #vis-5 svg,
-#vis-6 svg{
+#vis-6 svg {
     border: solid 4px white;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
@@ -167,6 +182,7 @@ img {
     padding: 20px;
     box-sizing: border-box;
 }
+
 #vis-7 svg,
 #vis-8 svg,
 #vis-9 svg {
@@ -185,6 +201,7 @@ img {
     display: flex;
     justify-content: center;
 }
+
 
 /*------------------------------------------  FOOTER ------------------------------------------*/
 footer {
