@@ -109,13 +109,21 @@
                 <!-- Puedes agregar los P que sean necesarios -->
                 <h4>Respuesta:</h4>
                 <p class="parrafoinforme">Visualización 1:</p>
-                <p>La herramienta corresponderá a un mapamundi que muestra los
-                    países de diferentes colores su índice de brecha de género en una escala de
-                    color. De esta manera el usuario objetivo podrá en primera instancia tener una
-                    idea visual de los niveles de brecha según sector del planeta. Además, al poner
-                    el mouse sobre un país (hover) se mostrará un pequeño recuadro que entregue más
+                <p>La herramienta corresponde a un círculo hecho de círculos que representan a los distintos
+                    países. Estos circulitos pequeños están ordenados según el ranking del Global
+                    Gender Report, moestrando cuán resuelta está la brecha de género en cada país, siendo
+                    la puntuación 1 un país sin brecha de género. Además, existen barras que salen
+                    desde los circulos de los países hacia el centro del círculo grande donde su
+                    largo representa el porcentaje de mujeres en STEM por país. El color de cada
+                    círculo representa su continente. Los datos del reporte fueron truncados hasta
+                    el número 100 del ranking para efectos de la visualización.
+                    De esta manera el usuario objetivo podrá en primera instancia tener una
+                    idea visual de los niveles de brecha según continente. Además, al poner
+                    el mouse sobre un país (hover) se muetra un recuadro que entregue más
                     información sobre el país seleccionado de manera específica como el nombre de
-                    este, su posición en el ranking mundial y su puntuación. </p>
+                    este, su posición en el ranking mundial, su puntuación y el porcentaje de mujeres
+                    en STEM. Además, el hover muestra en el centro del círculo la puntuación y el porcentaje
+                    de mujeres en STEM promedio del continente del país seleccionado.</p>
                 <p class="parrafoinforme">Visualización 2:</p>
                 <p> Esta herramienta analiza cómo se distribuye la elección de carreras entre hombres
                     y mujeres en distintos niveles educativos, con un enfoque particular en las
@@ -127,7 +135,11 @@
                     la comprensión de las disparidades de género en la elección de carreras. </p>
 
                 <p class="parrafoinforme">Visualización 3:</p>
-                <p> La herramienta corresponde a un mapa de Chile con todas las
+                <p> La visualización se compone de tres partes. <br>
+                    Parte 1: Mapa de Chile y sus regiones (izquierda) <br>
+                    Parte 2: Porcentaje de investigadoras(es) por región (centro) <br>
+                    Parte 3: Investigadora a visibilizar por región (derecha) <br>
+                    La herramienta corresponde a un mapa de Chile con todas las
                     regiones hasta el 2017 (fecha del último censo), donde el color muestra
                     el porcentaje de mujeres que viven en cada región. Originalmente, en el centro podemos
                     ver el promedio de la proporción de investigadoras(es) de las regiones de Chile.
@@ -147,13 +159,76 @@
                 <h3>Tipos de datos a utilizar en el proyecto</h3>
                 <!-- Puedes agregar los P que sean necesarios -->
                 <h4>Respuesta:</h4>
-                <p>Modifica solo este texto (no el de arriba) para poner tu respuesta</p>
+                <p class="parrafoinforme">Visualización 1: Ítem</p>
+                <p>
+                    (Islandia, 1, 0.912, 47, Europa): donde Islandia es el país, 1 es su posición en el
+                    ranking de brecha de género, 0.912 es su puntuación, 47 es el porcentaje de mujeres
+                    en STEM y Europa es su continente. <br>
+                </p>
+                <p class="parrafoinforme">Visualización 2: Ítem</p>
+                <p> (Pregrado, 24, 47): donde Pregrado es el nivel, 24 es el porcentaje de mujeres en
+                    Pregrado en Tecnología y 47 es el porcentaje de mujeres en Pregrado en Ciencias.<br>
+                </p>
+
+                <p class="parrafoinforme">Visualización 3:</p>
+                <p>
+                    Parte 1: Ítem<br>
+                    (Atacama, 49.29%, 49.93%, 286168): 
+                    donde Atacama es la región seleccionada, 49.29% es el porcentaje
+                    de mujeres que habita en Atacama, 49.93% es el porcentaje de hombres que habita en
+                    Atacama y 286168 es la población total de Atacama.<br>
+                    <br>
+                    Parte 2: Ítem <br>
+                    (Atacama, 20%, 80%): 
+                    donde Atacama es la región seleccionada, 20% es el porcentaje
+                    de mujeres investigadoras en Atacama y 80% es el porcentaje de hombres investiagadores
+                    en Atacama.<br>
+                    <br>
+                    Parte 3:Ítem <br>
+                    (Atacama, Erica Castro Inostroza, Desarrollo sostenible empleando...): 
+                    donde Atacama es la región seleccionada, Erica Castro Inostroza es la
+                    investigadora de Atacama y "Desarrollo sostenible empleando..." es el área de 
+                    investigación de Erica Castro Inostroza.<br>
+                </p>
+            </div>
             </div>
             <div class="response">
                 <h3>Tipos de atributos presente en los datos</h3>
                 <!-- Puedes agregar los P que sean necesarios -->
                 <h4>Respuesta:</h4>
-                <p>Modifica solo este texto (no el de arriba) para poner tu respuesta</p>
+                <p class="parrafoinforme">Visualización 1:</p>
+                <p>
+                    País: Categórico<br>
+                    Ranking: Secuencial<br>
+                    Puntuación: Cuantitativo-Secuencial<br>
+                    % de Mujeres en STEM: Cuantitativo<br>
+                    Continente: Categórico
+                </p>
+                <p class="parrafoinforme">Visualización 2:</p>
+                <p> 
+                    Nivel: Categórico<br>
+                    Tecnología: Cuantitativo <br>
+                    Ciencias: Cuantitativo<br>
+                </p>
+
+                <p class="parrafoinforme">Visualización 3:</p>
+                <p>
+                    Parte 1:<br>
+                    Región: Categórico<br>
+                    Porcentaje de mujeres: Cuantitativo<br>
+                    Porcentaje de hombres: Cuantitativo <br>
+                    Población Total: Cuantitativo<br>
+                    <br>
+                    Parte 2: <br>
+                    Región: Categórico<br>
+                    Porcentaje de mujeres investigadoras: Cuantitativo<br>
+                    Porcentaje de hombres investigadores: Cuantitativo <br>
+                    <br>
+                    Parte 3: <br>
+                    Región: Categórico<br>
+                    Nombre: Categórico<br>
+                    Descripción: Categórico<br>
+                </p>
             </div>
         </div>
 
@@ -170,10 +245,10 @@
 
                 <!-- Puedes agregar los P que sean necesarios -->
                 <h4>Acción: Descubrir</h4>
-                <h4>Objetivo: correlación</h4>
+                <h4>Objetivo: Correlación</h4>
                 <p>La primera tarea interesante para un usuario de esta plataforma sería entender las relaciones
-                    que existen entre las regiones de Chile y el procetaje de investiagadoras.
-                    Es una acción de tipo descubrir porque el usuario no conoce a priori la
+                    que existen entre la puntuación mundial de solución de brecha de género con el porcentaje de mujeres
+                    en stem den ese mismo país. Es una acción de tipo descubrir porque el usuario no conoce a priori la
                     información (o las conclusiones) que esta visualización arrojará. </p>
             </div>
             <div class="response">
@@ -186,9 +261,15 @@
                 </p>
 
                 <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Acción: [una palabra]</h4>
-                <h4>Objetivo: [una palabra]</h4>
-                <p>Justificar la acción-objetivo con el dominio presentado: </p>
+                <h4>Acción: Presentar</h4>
+                <h4>Objetivo: Tendencia</h4>
+                <p>Esta visualización tiene como acción presentar porque muestra directamente valores 
+                    en un estilo de gráfico, y la acción de tendencia es porque en cualquier caso,
+                    se muestra una tendencia a que hay menos del 50% de mujeres en todos los niveles. 
+                    Asimismo, se puede ver la tedencia de como estos porcentajes van variando a medida 
+                    que se va avanzando en el nivel de educación superior. 
+                    
+                </p>
             </div>
             <div class="response">
                 <h3>Tarea 3 (acción + objetivo) + justificación según el dominio presentado</h3>
@@ -200,9 +281,17 @@
                 </p>
 
                 <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Acción: [una palabra]</h4>
-                <h4>Objetivo: [una palabra]</h4>
-                <p>Justificar la acción-objetivo con el dominio presentado: </p>
+                <h4>Acción: Explorar</h4>
+                <h4>Objetivo: Valores</h4>
+                <p>Es una acción de tipo explorar porque el usuario no conoce el elemento a buscar ni su ubicación. Tanto para
+                    el mapa como para la distribución porcentual de investigadoras(es) en una región, hay información
+                    que el usuario no maneja y debe explorar a través del hover y hacer click para conocerla.
+                    Por ejemplo, el usuario sabe que en Aysén hay un menor porcentaje de mujeres (por el color)
+                    pero no conoce la cantidad de habitantes de esa región ni el porcentaje de mujeres investigadoras.
+                    Para conocer esto debe explorar. Además, el objetivo es valores porque se muestran los 
+                    valores de los atributos en las diferentes regiones, sin mostrar directamente relaciones
+                    entre sí ni tendencias.
+                </p>
             </div>
         </div>
 
