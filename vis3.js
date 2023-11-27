@@ -37,7 +37,9 @@ SVG8.attr("width", WIDTH_VIS_8).attr("height", HEIGHT_VIS_8);
 
 SVG9.attr("width", WIDTH_VIS_9).attr("height", HEIGHT_VIS_9);
 
-const svg7 = SVG7.append("g")
+const gZoom = SVG7.append("g"); // Definición de gZoom
+
+
 
 const svg9 = SVG9.append("g")
 
@@ -48,9 +50,23 @@ const projection = d3.geoMercator()
 
 const path = d3.geoPath().projection(projection);
 
+const svg7 = gZoom.append("g");
 
 const colorScale = d3.scaleSequential(degrade)
   .domain([0.47, 0.52]);
+
+
+const zoom = d3.zoom()
+  .scaleExtent([1, 8]) // Límites de escala del zoom
+  .on("zoom", zoomed);
+
+// Asignar comportamiento de zoom al contenedor
+gZoom.call(zoom).on("dblclick.zoom", null);
+
+// Función zoomed
+function zoomed(event) {
+  gZoom.attr("transform", event.transform);
+}
 
 const svg8 = SVG8.append("g")
 
