@@ -54,11 +54,7 @@ const WIDTH_VIS_3 = 1280;
 const HEIGHT_VIS_3 = 100;
 SVG3.attr("width", WIDTH_VIS_3).attr("height", HEIGHT_VIS_3);
 
-SVG3.append("text")
-    .attr("x", WIDTH_VIS_3 / 2 - 50)
-    .attr("y", 20)
-    .classed('texto-titulo', true)
-    .text("Conclusiones");
+
 
 // Visualización Brecha género  --------------------------------------------------------------------
 const WIDTH_VIS_2 = 900;
