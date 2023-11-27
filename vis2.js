@@ -108,10 +108,11 @@ function StemChile() {
             .attr("fill", color);
 
         // Añadir etiquetas encima de los hexágonos
-        SVG5.selectAll("text")
+        SVG5.selectAll("text.etiquetaNivel")  // Usa una clase específica para los elementos de texto
             .data(niveles)
             .enter()
             .append("text")
+            .attr("class", "etiquetaNivel")  // Asigna la misma clase a los nuevos elementos de texto
             .attr("x", columnaX)
             .attr("y", (d, i) => columnaY + i * 2 * radio * 1.3 + 20)
             .attr("dy", "-1em")
@@ -119,6 +120,7 @@ function StemChile() {
             .text(d => d)
             .attr("fill", "white") // Cambia el color del texto a blanco
             .style("font-family", "Lato, sans-serif");
+
 
 
         // Botón para Ciencias
