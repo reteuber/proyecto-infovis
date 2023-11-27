@@ -244,34 +244,194 @@ function updateBars(tipo) {
 }
 
 // Conclusiones   -----------------------------------------------------------------------------------
-const WIDTH_VIS_6 = 300;
-const HEIGHT_VIS_6 = 500;
-SVG6.attr("width", WIDTH_VIS_6).attr("height", HEIGHT_VIS_6);
 
-SVG6.append("text")
+SVG5.append("text")
     .attr("x", 30)
-    .attr("y", 100)
+    .attr("y", 15)
     .attr("font-family", "Montserrat")
     .attr("font-size", "15px")
     .attr("font-weight", "bold")
     .text("Mujeres");
 
-SVG6.append("text")
+SVG5.append("text")
     .attr("x", 30)
-    .attr("y", 130)
+    .attr("y", 45)
     .attr("font-family", "Montserrat")
     .attr("font-size", "15px")
     .attr("font-weight", "bold")
     .text("Hombres");
 
-SVG6.append("circle")
+SVG5.append("circle")
     .attr("cx", 10)
-    .attr("cy", 96)
+    .attr("cy", 10)
     .attr("r", 9)
     .attr("fill", "#D53302");
 
-SVG6.append("circle")
+SVG5.append("circle")
     .attr("cx", 10)
-    .attr("cy", 126)
+    .attr("cy", 40)
     .attr("r", 9)
     .attr("fill", "#8FB1BE");
+
+const WIDTH_VIS_6 = 400;
+const HEIGHT_VIS_6 = 450;
+SVG6.attr("width", WIDTH_VIS_6).attr("height", HEIGHT_VIS_6);
+
+
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "24px")
+    .attr("font-weight", "bold")
+    .attr("fill", "#FCC560")
+    .text("¿Sabías qué?")
+    .attr("transform", function (d, i) {
+        return `translate(200,30)`;
+      })
+
+
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#252850")
+    .text("En las universidades de Chile,")
+    .attr("transform", function (d, i) {
+        return `translate(210,80)`;
+    })
+
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#252850")
+    .text("de un total de 60 rectores")
+    .attr("transform", function (d, i) {
+        return `translate(210,100)`;
+    })
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#D53302")
+    .attr("font-weight", "bold")
+    .text("solo 5 son mujeres")
+    .attr("transform", function (d, i) {
+        return `translate(210,120)`;
+    })
+
+
+
+SVG6.append("text")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#D53302")
+    .text("Solo el 20%")
+    .attr("font-weight", "bold")
+    .attr("transform", function (d, i) {
+        return `translate(135,160)`;
+    })
+
+SVG6.append("text")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#252850")
+    .text("de los ")
+    .attr("transform", function (d, i) {
+        return `translate(233,160)`;
+    })
+
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#252850")
+    .text("proyectos CORFO - Innova")
+    .attr("transform", function (d, i) {
+        return `translate(210,180)`;
+    })
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#D53302")
+    .attr("font-weight", "bold")
+    .text("son liderados por mujeres")
+    .attr("transform", function (d, i) {
+        return `translate(210,200)`;
+    })
+    
+
+
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#252850")
+    .text("El año 2022, las mujeres")
+    .attr("transform", function (d, i) {
+        return `translate(210,240)`;
+    })
+
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#252850")
+    .text("matriculadas en el área STEM")
+    .attr("transform", function (d, i) {
+        return `translate(210,260)`;
+    })
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#D53302")
+    .attr("font-weight", "bold")
+    .text("fueron solo un 32% del total")
+    .attr("transform", function (d, i) {
+        return `translate(210,280)`;
+    })
+
+
+
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#252850")
+    .text("De un total de 560 Premios")
+    .attr("transform", function (d, i) {
+        return `translate(210,320)`;
+    })
+
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#252850")
+    .text("Nobel de la ciencia,")
+    .attr("transform", function (d, i) {
+        return `translate(210,340)`;
+    })
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#D53302")
+    .attr("font-weight", "bold")
+    .text("solo 18 han sido")
+    .attr("transform", function (d, i) {
+        return `translate(210,360)`;
+    })
+
+SVG6.append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Montserrat")
+    .attr("font-size", "16px")
+    .attr("fill", "#D53302")
+    .attr("font-weight", "bold")
+    .text("entregados a mujeres (3%)")
+    .attr("transform", function (d, i) {
+        return `translate(210,380)`;
+    })
