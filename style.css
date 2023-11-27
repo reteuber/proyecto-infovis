@@ -64,6 +64,10 @@ p {
     font-size: 1´5px;
 }
 
+.nombres{
+    background-color: #D53302;
+}
+
 .parrafoinforme {
     font-weight: bold;
     color: #8FB1BE;
@@ -208,6 +212,15 @@ img {
 footer {
     width: 100%;
     text-align: center;
-    padding: 20px;
-    clear: both;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #A0CBAD;
+    color: white;
+    height: 30px;
+    font-size: 15px;
+    line-height: 4px; 
+
 }

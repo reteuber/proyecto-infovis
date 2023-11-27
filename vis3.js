@@ -250,6 +250,7 @@ function visualizacionMapa() {
           leyenda_hombres.text("");
           leyenda_total.text("");
           area_investigadora.text("");
+          svg9.selectAll("g.investigadoraGroup").remove();
           visualizacionInvestigadoras(null, false);
           visualizacionPromedioChile();
           todasInvestigadoras(true);
@@ -271,6 +272,7 @@ function visualizacionMapa() {
         }
       });
     if (regionSeleccionada === null) {
+      svg9.selectAll("g.investigadoraGroup").remove();
       visualizacionInvestigadoras(null, false);
       todasInvestigadoras(true);
       visualizacionPromedioChile();
@@ -510,7 +512,7 @@ function visualizacionPromedioChile() {
 }
 
 function visualizacionInvestigadoras(region_seleccionada, mostrar) {
-  svg9.selectAll("g.investigadoraGroup").remove();
+  svg9.selectAll("image.foto_inv").remove();
   area.text("")
 
   if (mostrar === true) {
